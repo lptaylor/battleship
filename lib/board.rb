@@ -1,4 +1,4 @@
-require 'pry'
+
 class Board
 attr_reader :board
   def initialize(numerical)
@@ -16,4 +16,4 @@ attr_reader :board
   end
   end
 end
-binding.pry
+
