@@ -1,25 +1,19 @@
-# all board is going to handle is the layout
-#of the hash in the correct order.
-#Primary variable of board is going to be size,
-# secondary is the hash
-
-
-#create hash of grid points
-#how to print as grid?
 
 class Board
-
-attr_reader :size, :hashgrid
-
-  def initialize(size, hashgrid)
-    @size = size
-    @hashgrid = hashgrid
+attr_reader :board
+  def initialize(numerical)
+  @num_to_alpha = {
+    1=>"a",2=>"b",3=>"c",4=>"d",5=>"e",6=>"f",7=>"g",
+    8=>"h",9=>"i",10=>"j",11=>"k",12=>"l",13=>"m",14=>"n",
+    15=>"o",16=>"p",17=>"q",18=>"r",19=>"s",20=>"t",
+    21=>"u",22=>"v",23=>"w",24=>"x",25=>"y",26=>"z"
+  }
+  @board = {}
+     ('a'..@num_to_alpha[numerical]).each do |letter|
+        (1..numerical).each do |num|
+            @board["#{letter}#{num}"] = "O"
+            end
   end
-
-  def shape
-    #This defined the shape of the grid based on the size
-    #And lays out the hash accordingly
   end
-
-  def
 end
+

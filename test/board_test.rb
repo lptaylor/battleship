@@ -2,13 +2,15 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/board'
 
-class BoardTest <MiniTest::Test
-
-  def test_it_exists
+  def test_that_you_can_make_a_board
     board = Board.new
 
-    assert_instance_of Board, board
+    board.generate_a_board("d",4)
+
+    assert_equal 0, board.generate_a_board("d",4)
   end
 
+  def test_it_has_spaces
 
-end
+  end
+
