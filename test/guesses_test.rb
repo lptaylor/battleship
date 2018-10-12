@@ -10,6 +10,10 @@ class GuessesTest < Minitest::Test
     assert_instance_of Guesses, player_guess
   end
 
+  def test_that_guesses_is_empty
+    guesses = Guesses.new
 
+    assert_equal [], guesses
+  end
 
 end
