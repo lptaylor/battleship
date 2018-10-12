@@ -10,4 +10,10 @@ class ShipsTest < Minitest::Test
     assert_instance_of Ships, ship_1
   end
 
+  def test_it_is_aloat
+    ship_1 = Ships.new(2)
+    ship_1.alive?
+
+    assert_equal "Ship is afloat!", ship_1.alive?
+  end
 end
