@@ -19,8 +19,4 @@ class BoardTest < Minitest::Test
 
     assert_equal 0, board.generate_a_board("d",4)
   end
-
-  def test_it_has_spaces
-
-  end
 end
