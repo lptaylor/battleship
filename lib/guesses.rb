@@ -8,7 +8,7 @@ attr_reader :shots
   end
 
   def player_guess
-
+#This info goes into ships, this is their desicion to make only check for double shots.
     loop do
       p "Please input a guess such as 'a1' or 'c3'."
       @player_shots = gets.chomp.downcase
@@ -31,15 +31,17 @@ attr_reader :shots
 
     #playerboard.key gives array just shuffle and pop
     loop do
-      coords = playerboard.keys.shuffle
-      compshot = coords.pop
+      coords = playerboard.keys.shuffle.pop
+      compshot = round.player_board.values_at(coords)
+      switch = round.player_board[coords]
+
       if compshot == "O"
-        compshot = "M"
+        switch = "M"
         p "Your opponent has missed"
         break
       elsif compshot == "S"
-        compshot = "H"
-        p "You've been hit! Check #{compshot} for damage!"
+        switch = "H"
+        p "You've been hit! Check #{coords} for damage!"
         break
       elsif compshot == "H" || compshot == "M"
       end
@@ -50,27 +52,6 @@ attr_reader :shots
 
 
   end
-
-  loop do
-    p player_shot_board
-    p player_ship_board
-    player_guess
-    player.guess_hit?
-    player.feedback
-    break if computer_ship_board != s
-
-    p computer_shot_board
-    p computer_ship_board
-    computer_guess
-    computer.guess_hit?
-    computer.feedback
-    break if player_ship_board != s
-
-    p "No winner next turn"
-
-    record_shots
-  end
-
 
   def record_shots
 

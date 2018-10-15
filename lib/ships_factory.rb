@@ -3,6 +3,7 @@ require './lib/ships'
 class ShipFactory
 
   def initialize
+    #contains the ship objects to be iterated over for lifesigns
     @ship_list = []
   end
 

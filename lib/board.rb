@@ -1,4 +1,7 @@
+require 'pry'
+
 class Board
+  
   attr_reader :size, :board
 
   def initialize(size)
@@ -31,7 +34,7 @@ class Board
     letter_ref = ('a'..num_to_alpha[@size])
     letter_ref.each do |letter|
       print "#{i}.."
-      @board.keys.each do |slip| 
+      @board.keys.each do |slip|
         if slip.include?(letter)
           print @board.values_at(slip)
         end
@@ -42,3 +45,5 @@ class Board
     return "Battlefield"
   end
 end
+
+binding.pry
