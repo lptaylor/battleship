@@ -24,7 +24,8 @@ attr_reader :shots
           p "You've already placed a shot there, enter a new coordinate."
         end
     end
-  
+  end
+
 
   def computer_guess
     loop do
@@ -43,7 +44,7 @@ attr_reader :shots
       elsif compshot == "H" || compshot == "M"
       end
 
-      end
+    end
 
 
 
