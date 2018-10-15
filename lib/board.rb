@@ -1,9 +1,10 @@
 class Board
-  attr_reader :size, :board
+  attr_reader :size
+  attr_writer :board
 
   def initialize(size)
     @size = size
-    @board = {}
+    @board = Hash.new
     #generate_a_board
   end
 
@@ -31,7 +32,7 @@ class Board
     letter_ref = ('a'..num_to_alpha[@size])
     letter_ref.each do |letter|
       print "#{i}.."
-      @board.keys.each do |slip| 
+      @board.keys.each do |slip|
         if slip.include?(letter)
           print @board.values_at(slip)
         end
