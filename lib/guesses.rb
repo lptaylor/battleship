@@ -9,11 +9,42 @@ attr_reader :shots
 
   def player_guess
 
-  end
-
-
+    loop do
+      p "Please input a guess such as 'a1' or 'c3'."
+      @player_shots = gets.chomp.downcase
+        if compboard[@player_shots] == "O"
+          p "You missed"
+          compboard[@player_shots] = "M"
+          break
+        elsif compboard[@player_shots] == "S"
+          p "You hit an enemy ship!"
+          compboard[@player_shots] = "H"
+          break
+        elsif compboard[@player_shots] == "H" || compboard[@player_shots] == "M"
+          p "You've already placed a shot there, enter a new coordinate."
+        end
+    end
+  
 
   def computer_guess
+    loop do
+      coord2 = rand(1..playerboard.size)
+      coord1 = playerboard.num_to_alpha[rand(1..playerboard.size)]
+      compshot = playerboard["#{coord1}#{coord2}"]
+
+      if compshot == "O"
+        compshot = "M"
+        p "Your opponent has missed"
+        break
+      elsif compshot == "S"
+        compshot = "H"
+        p "You've been hit! Check #{coord1}#{coord2} for damage!"
+        break
+      elsif compshot == "H" || compshot == "M"
+      end
+
+      end
+
 
 
   end
