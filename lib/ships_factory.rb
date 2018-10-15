@@ -1,11 +1,9 @@
-require 'pry'
 require './lib/ships'
 
 class ShipFactory
 
   def initialize
-
-  @ship_list = []
+    @ship_list = []
   end
 
   def pick_your_ships
@@ -42,4 +40,3 @@ class ShipFactory
     end
   end
 end
-binding.pry

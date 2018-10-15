@@ -8,8 +8,6 @@ attr_reader :shots
   end
 
   def player_guess
-    p "Please input a guess"
-    @player_shots = gets.chomp
 
   end
 

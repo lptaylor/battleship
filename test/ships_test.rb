@@ -11,8 +11,8 @@ class ShipsTest < Minitest::Test
   end
 
   def test_you_can_build_battleship
-    ship_1 = Ships.battleship
+    ship_1 = Ships.new.battleship
 
-    assert_equal battleship, Ships.battleship
+    assert_equal battleship, ship_1
   end
 end
