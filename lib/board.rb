@@ -1,17 +1,19 @@
-
 class Board
-  attr_reader :board
+  attr_reader :size, :board
 
   def initialize(size)
-    generate_a_board
+    @size = size
+    @board = {}
+    #generate_a_board
   end
 
-  def generate_a_board(size)
-    ('a'..num_to_alpha[size]).each do |letter|
-      (1..size).each do |num|
+  def generate_a_board
+    ('a'..num_to_alpha[@size]).each do |letter|
+      (1..@size).each do |num|
         @board["#{letter}#{num}"] = "O"
       end
     end
+    return @board
   end
 
   def num_to_alpha
@@ -21,5 +23,22 @@ class Board
        15=>"o",16=>"p",17=>"q",18=>"r",19=>"s",20=>"t",
        21=>"u",22=>"v",23=>"w",24=>"x",25=>"y",26=>"z"
      }
+  end
+  def print_board
+    i = 01
+    ('a'..num_to_alpha[@size]).each {|n| print "    #{n}"}
+    print "\n"
+    letter_ref = ('a'..num_to_alpha[@size])
+    letter_ref.each do |letter|
+      print "#{i}.."
+      @board.keys.each do |slip|
+        if slip.include?(letter)
+          print @board.values_at(slip)
+        end
+      end
+      print "\n"
+      i += 1
+    end
+    return "Battlefield"
   end
 end
