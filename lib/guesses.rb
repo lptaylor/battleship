@@ -8,6 +8,7 @@ attr_reader :shots
   end
 
   def player_guess
+
     loop do
       p "Please input a guess such as 'a1' or 'c3'."
       @player_shots = gets.chomp.downcase
@@ -23,7 +24,7 @@ attr_reader :shots
           p "You've already placed a shot there, enter a new coordinate."
         end
     end
-  end
+  
 
   def computer_guess
     loop do
