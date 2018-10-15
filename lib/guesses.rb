@@ -24,29 +24,26 @@ attr_reader :shots
           p "You've already placed a shot there, enter a new coordinate."
         end
     end
-  
+  end
+
 
   def computer_guess
-    loop do
-      coord2 = rand(1..playerboard.size)
-      coord1 = playerboard.num_to_alpha[rand(1..playerboard.size)]
-      compshot = playerboard["#{coord1}#{coord2}"]
 
+    #playerboard.key gives array just shuffle and pop
+    loop do
+      coords = playerboard.keys.shuffle
+      compshot = coords.pop
       if compshot == "O"
         compshot = "M"
         p "Your opponent has missed"
         break
       elsif compshot == "S"
         compshot = "H"
-        p "You've been hit! Check #{coord1}#{coord2} for damage!"
+        p "You've been hit! Check #{compshot} for damage!"
         break
       elsif compshot == "H" || compshot == "M"
       end
-
-      end
-
-
-
+    end
   end
 
   def guess_hit?()
