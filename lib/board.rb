@@ -6,7 +6,8 @@ class Board
   def initialize(size)
     @size = size
     @board = Hash.new
-    #generate_a_board
+    @row = []
+    @col = []
   end
 
   def generate_a_board
@@ -26,7 +27,7 @@ class Board
        21=>"u",22=>"v",23=>"w",24=>"x",25=>"y",26=>"z"
      }
   end
-  
+
   def print_board
     p "Here is the board you are playing on with all the coordiantes you can chooose."
     i = 01
@@ -46,18 +47,20 @@ class Board
     return "Battlefield"
   end
 
-  def checkplace(ship_array)
-    user_ship_array.each do |coordinates|
-      split_coodinates = coordiantes.split
-      row << split_coodinates[0]
-      col << split_coodinates[1]
+  def checkplace
+    user_ship_array.each do |ships|
+      ships.each do |coordinate|
+      split_coodinates = coordiante.split
+      @row << split_coodinates[0]
+      @col << split_coodinates[1]
+      end
     end
       if row.all?(user_placement.split[0]) || col.all?(user_placement.split[1])
       end
   end
 
   def ship_placement
-        if @board.key.include?(user_placement) && checkplace
+        if @board.key.include?(user_placement) && checkplace && ships_length_check
           p "Ship is now on the high seas!"
         else
           p "Invalid ship placement ya scallywag!"
