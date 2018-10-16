@@ -60,17 +60,17 @@ class Board
   end
 
   #Master check method
-  def ship_placement_check(ships_array)
-      ships_array.each do |ships|
-        ships.each do |coordinates|
-          if @board.key.include?(coordinates) && checkplace && ships_length_check
-            p "Ship is now on the high seas!"
-          else
-            p "Invalid ship placement ya scallywag!"
-          end
-        end
-      end
-  end
+  # def ship_placement_check(ships_array)
+  #     ships_array.each do |ships|
+  #       ships.each do |coordinates|
+  #         if @board.key.include?(coordinates) && checkplace #&& ships_length_check
+  #           p "Ship is now on the high seas!"
+  #         else
+  #           p "Invalid ship placement ya scallywag!"
+  #         end
+  #       end
+  #     end
+  # end
 
   def place_ships_player
     p "How many ships would you like to play with?"
@@ -81,9 +81,10 @@ class Board
     ship_count.times do |selection|
       selection = @ship_yard.pick_your_ships
     end
+    p "Here is your board to place your ships"
     print_board
     @ship_yard.place_on_board_player
-      if ship_placement_check(@ship_yard)
-      end
+      # if ship_placement_check(@ship_yard)
+      # end
   end
 end
