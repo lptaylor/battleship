@@ -1,5 +1,6 @@
 require './lib/ships_factory'
 class Board
+  
   attr_reader :size, :board
 
 
@@ -88,3 +89,5 @@ class Board
       # end
   end
 end
+
+binding.pry

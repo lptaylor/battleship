@@ -3,7 +3,11 @@ require 'pry'
 class ShipFactory
 
   def initialize
+
+    #contains the ship objects to be iterated over for lifesigns
+
     @ship_yard = []
+
   end
 
   def pick_your_ships
