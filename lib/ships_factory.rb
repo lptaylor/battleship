@@ -1,6 +1,7 @@
 require './lib/ships'
-require 'pry'
+# require 'pry'
 class ShipFactory
+  attr_reader :ship_yard
 
   def initialize
 
@@ -44,17 +45,18 @@ class ShipFactory
     end
   end
 
-  def place_on_board_player
-    @ship_yard.map do |ship|
+  def place_on_board
+    coordinate_array = @ship_yard.map do |ship|
       ship.size.map do |coordinates|
         coordinates = gets.chomp.to_s
       end
     end
+    @ship_yard.replace(coordinate_array)
   end
 
   def place_ships_player
     p "Please place your ships."
-    @ship_yard.place_on_board
+    place_on_board
   end
 end
-binding.pry
+# binding.pry
