@@ -14,31 +14,6 @@ attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
     @player_ship_board.generate_a_board
     @computer_ship_board = Board.new(board_size)
     @computer_ship_board.generate_a_board
-    p "How many ships would you like to play with?"
-    ship_count = gets.chomp.to_i
-    p "What ships would you like to play with?"
-    #loop until true for all
-    @ship_yard = ShipFactory.new
-    ship_count.times do |selection|
-      selection = @ship_yard.pick_your_ships
-    end
-    @ship_yard.place_on_board_player
-      if ship_placement_check(@ship_yard)
-      end
+    @player_ship_board.place_ships_player
   end
-
-  def place_ships_computer
-
-  end
-  def shot_fired
-    #main loop
-
-  end
-
-  def place_ships(ships)
-
-  end
-
-
-
 end

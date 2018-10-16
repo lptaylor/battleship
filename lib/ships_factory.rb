@@ -1,5 +1,5 @@
 require './lib/ships'
-
+require 'pry'
 class ShipFactory
 
   def initialize
@@ -7,7 +7,7 @@ class ShipFactory
   end
 
   def pick_your_ships
-    puts "Please pick your ships."
+    puts "Please pick your ships. Only one of each allowed!"
     puts "1: Carrier"
     puts "2: Battleship"
     puts "3: Submarine"
@@ -42,7 +42,7 @@ class ShipFactory
 
   def place_on_board_player
     @ship_yard.map do |ship|
-      ship.map do |coordinates|
+      ship.size.map do |coordinates|
         coordinates = gets.chomp.to_s
       end
     end
@@ -53,3 +53,4 @@ class ShipFactory
     @ship_yard.place_on_board
   end
 end
+binding.pry
