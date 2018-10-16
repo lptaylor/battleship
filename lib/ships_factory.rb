@@ -40,10 +40,10 @@ class ShipFactory
     end
   end
 
-  def place_on_board
+  def place_on_board_player
     @ship_yard.map do |ship|
       ship.map do |coordinates|
-        coordinates = gets.chomp
+        coordinates = gets.chomp.to_s
       end
     end
   end

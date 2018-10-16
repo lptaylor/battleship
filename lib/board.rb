@@ -59,11 +59,15 @@ class Board
       end
   end
 
-  def ship_placement
-        if @board.key.include?(user_placement) && checkplace && ships_length_check
-          p "Ship is now on the high seas!"
-        else
-          p "Invalid ship placement ya scallywag!"
+  def ship_placement_check(ships_array)
+      ships_array.each do |ships|
+        ships.each do |coordinates|
+          if @board.key.include?(coordinates) && checkplace && ships_length_check
+            p "Ship is now on the high seas!"
+          else
+            p "Invalid ship placement ya scallywag!"
+          end
         end
+      end
   end
 end
