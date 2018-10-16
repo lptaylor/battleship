@@ -3,6 +3,7 @@ SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/ships'
+require './lib/board'
 
 class ShipsTest < Minitest::Test
 

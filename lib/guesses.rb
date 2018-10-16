@@ -28,7 +28,7 @@ attr_reader :shots
 
 
   def computer_guess
-
+    
     #playerboard.key gives array just shuffle and pop
     loop do
       coords = playerboard.keys.shuffle.pop
@@ -47,10 +47,19 @@ attr_reader :shots
       end
     end
   end
-
-  def guess_hit?()
-
-
+#Should this be in the board? info is on the board.
+#Does it need to go through guess?
+  def What_lives(hash, ship_list)
+    ship_list.map do |ship|
+      if ship.currentlife == 0
+        ship_yard.delete(ship)
+        p "They destroyed your #{ship}!"
+        p "You have #{ship_yard.count} remaining!"
+      else
+        p "You currently have #{ship_yard.count} ship(s) remaining!"
+      end
+    end
+    ship_list
   end
 
   def record_shots
