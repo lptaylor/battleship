@@ -1,6 +1,9 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/ships'
+require './lib/board'
 
 class ShipsTest < Minitest::Test
 
@@ -10,9 +13,18 @@ class ShipsTest < Minitest::Test
     assert_instance_of Ships, ship_1
   end
 
-  def test_you_can_build_battleship
-    ship_1 = Ships.new.battleship
+  def test_knows_its_location
 
-    assert_equal battleship, ship_1
+
   end
+
+  def test_the_ship_can_check_if_hit
+
+  end
+
+  def test_it_knows_when_missed
+
+  end
+
+
 end
