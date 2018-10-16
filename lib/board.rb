@@ -1,8 +1,7 @@
 require './lib/ships_factory'
-# require 'pry'
 class Board
-  attr_reader :size, :board, :updater_hash
 
+  attr_reader :size, :board, :updater_hash
 
   def initialize(size)
     @size = size
@@ -102,4 +101,3 @@ class Board
     print_board
   end
 end
-# binding.pry
