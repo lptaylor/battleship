@@ -1,6 +1,6 @@
 require './lib/board'
-# require './lib/ships_factory'
-# require './lib/player_ship_placement'
+
+
 
 
 class Round
@@ -26,6 +26,6 @@ attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
   end
 
   def start_round
-    @player_ship_board.place_ships_player
+    @player_ship_board.ship_placement
   end
 end
