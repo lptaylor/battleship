@@ -3,7 +3,7 @@ require './lib/ships'
 class ShipFactory
 
   def initialize
-    @ship_list = []
+    @ship_yard = []
   end
 
   def pick_your_ships
@@ -17,33 +17,39 @@ class ShipFactory
     choice = gets.chomp.to_i
     if choice == 1
       carrier = Ships.new(5)
-      @ship_list << carrier
       p "You chose a Carrier"
+      @ship_yard << carrier
     elsif choice == 2
       battleship = Ships.new(4)
-      @ship_list << battleship
       p "You chose a Battleship"
+      @ship_yard << battleship
     elsif choice == 3
       submarine = Ships.new(3)
-      @ship_list << submarine
       p "You chose a Submarine"
+      @ship_yard << submarine
     elsif choice == 4
       cruiser = Ships.new(3)
-      @ship_list << cruiser
       p "You chose a Cruiser"
+      @ship_yard << cruiser
     elsif choice == 5
       destroyer = Ships.new(2)
-      @ship_list << destroyer
       p "You chose a Destroyer"
+      @ship_yard << destroyer
     else
       p "Not a valid choice"
     end
   end
 
   def place_on_board
-    @ship_list.map do |coordinates|
-      coordinates = gets.chomp
+    @ship_yard.map do |ship|
+      ship.map do |coordinates|
+        coordinates = gets.chomp
+      end
     end
-    @ship_list.ship_placement
+  end
+
+  def place_ships_player
+    p "Please place your ships."
+    @ship_yard.place_on_board
   end
 end

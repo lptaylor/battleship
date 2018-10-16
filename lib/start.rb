@@ -14,7 +14,6 @@ class Start
     def play
       p "Let the Game begin."
       new_game = Round.new
-      new_game.place_ships_player
     end
 
     def quit

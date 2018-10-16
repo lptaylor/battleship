@@ -1,5 +1,5 @@
 require './lib/board'
-require './lib/ships_factory'
+# require './lib/ships_factory'
 # require './lib/player_ship_placement'
 
 
@@ -16,16 +16,9 @@ attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
     @computer_ship_board.generate_a_board
     p "What ships would you like to play with?"
     @ship_yard = ShipFactory.new.pick_your_ships
+    @ship_yard.place_ships_player
   end
-
-  def place_ships_player
-    p "Here is the board you are playing on with all the coordiantes you can chooose."
-    p "Please place your ships."
-
-    end
-
-  end
-
+  
   def place_ships_computer
 
   end

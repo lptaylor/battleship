@@ -1,3 +1,4 @@
+require './lib/ships_factory'
 class Board
   attr_reader :size, :board
 
@@ -25,7 +26,9 @@ class Board
        21=>"u",22=>"v",23=>"w",24=>"x",25=>"y",26=>"z"
      }
   end
+  
   def print_board
+    p "Here is the board you are playing on with all the coordiantes you can chooose."
     i = 01
     ('a'..num_to_alpha[@size]).each {|n| print "    #{n}"}
     print "\n"
@@ -43,7 +46,7 @@ class Board
     return "Battlefield"
   end
 
-  def checkplace(user_ship_array)
+  def checkplace(ship_array)
     user_ship_array.each do |coordinates|
       split_coodinates = coordiantes.split
       row << split_coodinates[0]
