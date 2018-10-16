@@ -43,25 +43,21 @@ class Board
     return "Battlefield"
   end
 
-  def checkplace
-    user_placement.each do |coordinates|
+  def checkplace(user_ship_array)
+    user_ship_array.each do |coordinates|
       split_coodinates = coordiantes.split
       row << split_coodinates[0]
       col << split_coodinates[1]
     end
       if row.all?(user_placement.split[0]) || col.all?(user_placement.split[1])
-        return
       end
   end
 
   def ship_placement
-      ship_yard.each do |ship|
-        ship_yard << ship
         if @board.key.include?(user_placement) && checkplace
           p "Ship is now on the high seas!"
         else
           p "Invalid ship placement ya scallywag!"
         end
-      end
   end
 end

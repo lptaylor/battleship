@@ -39,4 +39,11 @@ class ShipFactory
       p "Not a valid choice"
     end
   end
+
+  def place_on_board
+    @ship_list.map do |coordinates|
+      coordinates = gets.chomp
+    end
+    @ship_list.ship_placement
+  end
 end

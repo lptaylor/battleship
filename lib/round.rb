@@ -19,11 +19,9 @@ attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
   end
 
   def place_ships_player
-    p "Please place your ships."
     p "Here is the board you are playing on with all the coordiantes you can chooose."
-    @player_ship_board.print_board
-    @ship_yard.each do |user_place|
-      user_place = gets.chomp
+    p "Please place your ships."
+
     end
 
   end
