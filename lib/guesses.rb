@@ -45,7 +45,6 @@ attr_reader :shots
         break
       elsif compshot == "H" || compshot == "M"
       end
-    end
   end
 #Should this be in the board? info is on the board.
 #Does it need to go through guess?

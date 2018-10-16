@@ -1,3 +1,4 @@
+require './lib/round'
 class Start
   attr_reader :userinput
     def initialize
@@ -12,7 +13,7 @@ class Start
 
     def play
       p "Let the Game begin."
-
+      new_game = Round.new
     end
 
     def quit

@@ -1,13 +1,14 @@
-require 'pry'
-
+require './lib/ships_factory'
 class Board
   
   attr_reader :size, :board
 
+
   def initialize(size)
     @size = size
-    @board = {}
-    #generate_a_board
+    @board = Hash.new
+    @row = []
+    @col = []
   end
 
   def generate_a_board
@@ -27,7 +28,9 @@ class Board
        21=>"u",22=>"v",23=>"w",24=>"x",25=>"y",26=>"z"
      }
   end
+
   def print_board
+    p "Here is the board you are playing on with all the coordiantes you can chooose."
     i = 01
     ('a'..num_to_alpha[@size]).each {|n| print "    #{n}"}
     print "\n"
@@ -43,6 +46,47 @@ class Board
       i += 1
     end
     return "Battlefield"
+  end
+
+  def checkplace
+    user_ship_array.each do |ships|
+      ships.each do |coordinate|
+      split_coodinates = coordiante.split
+      @row << split_coodinates[0]
+      @col << split_coodinates[1]
+        if row.all?(user_placement.split[0]) || col.all?(user_placement.split[1])
+        end
+      end
+    end
+  end
+
+  #Master check method
+  # def ship_placement_check(ships_array)
+  #     ships_array.each do |ships|
+  #       ships.each do |coordinates|
+  #         if @board.key.include?(coordinates) && checkplace #&& ships_length_check
+  #           p "Ship is now on the high seas!"
+  #         else
+  #           p "Invalid ship placement ya scallywag!"
+  #         end
+  #       end
+  #     end
+  # end
+
+  def place_ships_player
+    p "How many ships would you like to play with?"
+    ship_count = gets.chomp.to_i
+    p "What ships would you like to play with?"
+    #loop until true for all
+    @ship_yard = ShipFactory.new
+    ship_count.times do |selection|
+      selection = @ship_yard.pick_your_ships
+    end
+    p "Here is your board to place your ships"
+    print_board
+    @ship_yard.place_on_board_player
+      # if ship_placement_check(@ship_yard)
+      # end
   end
 end
 
