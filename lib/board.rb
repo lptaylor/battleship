@@ -1,7 +1,7 @@
 require './lib/ships_factory'
 class Board
 
-  attr_reader :size, :board, :updater_hash
+  attr_reader :size, :board, :updater_hash, :active_ships
 
   def initialize(size)
     @size = size
@@ -11,6 +11,7 @@ class Board
     @player_coordinates_array = []
     @row = []
     @col = []
+
   end
 
   def generate_a_board
@@ -34,11 +35,11 @@ class Board
   def print_board
     p "Here is the board you are playing on with all the coordinates you can chooose."
     i = 01
-    ('a'..num_to_alpha[@size]).each {|n| print "    #{n}"}
+    (1..@size).each {|n| print "    #{n}"}
     print "\n"
     letter_ref = ('a'..num_to_alpha[@size])
     letter_ref.each do |letter|
-      print "#{i}.."
+      print "#{num_to_alpha[i]}.."
       @board.keys.each do |slip|
         if slip.include?(letter)
           print @board.values_at(slip)
@@ -61,11 +62,13 @@ class Board
     p "Here is your board to place your ships"
     print_board
     @active_ships.place_ships_player
+    # @computer_ships.map do |&:clone
     update_board_hash
     # p print_board
       # if ship_placement_check(@active_ships)
       # end
   end
+
 
   def update_board_hash
     @active_ships.ship_yard.map do |hash_array|
@@ -76,7 +79,6 @@ class Board
     @board.merge!(@updater_hash)
     print_board
   end
-
 
   def ship_placement_check
     @active_ships.ship_yard.each do |ships|
@@ -103,11 +105,7 @@ class Board
     end
   end
 
-
-
-
   def ships_length_check(coordinates)
-
 
   end
 end

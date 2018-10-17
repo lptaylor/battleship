@@ -1,4 +1,5 @@
 require './lib/board'
+require './lib/guesses'
 
 class Round
 attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
@@ -24,6 +25,37 @@ attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
 
   def start_round
     @player_ship_board.ship_placement
+
     @computer_ship_board.comp_ship_placement
+
   end
+  def game_sequence
+    loop do
+    @game_sequence = Guesses.new
+    player_guess
+    # computer_guess
+
+
+
+    end
+  end
+
+
+  def player_guess
+    @game_sequence.player_shot(@computer_ship_board)
+    @game_sequence.player_shots
+    #@computer_ship_board.ship_status
+
+
+  end
+
+  def computer_guess
+    @game_sequence.computer_shot(@player_ship_board)
+  end
+
+  # def check_status
+  #   @game_sequence.what_lives(@computer_ship_board.active_ships.ship_yard)
+  #   @game_sequence.what_lives(@player_ship_board.active_ships.ship_yard)
+  # end
+
 end

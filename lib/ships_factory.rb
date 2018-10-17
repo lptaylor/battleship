@@ -71,10 +71,27 @@ class ShipFactory
     end
     @ship_yard.replace(coordinate_array)
   end
+  # def comp_place_on_board(compboard)
+  #   coordinate_array = @ship_yard.map do |ship|
+  #     key = compboard.keys.shuffle.pop
+  #     ship.size.map do |coordinates|
+  #       arr = key.split(//)
+  #       num = arr[1].to_i
+  #     end
+  #
+  #
+  #
+  #
+  #       coordinates =
+  #     end
+  #   end
+  # end
+
 
   def place_ships_player
     p "Please place your ships."
     place_on_board
+
   end
 
   def place_on_board_comp

@@ -1,39 +1,39 @@
 class Guesses
-attr_reader :shots
-  def initialize(turn)
+attr_reader :shots, :player_shots, :computer_shots
+  def initialize
 
     @shots = []
     @player_shots = player_shots
     @computer_shots = computer_shots
   end
 
-  def player_guess
+  def player_shot(compboard)
 #This info goes into ships, this is their desicion to make only check for double shots.
     loop do
       p "Please input a guess such as 'a1' or 'c3'."
-      @player_shots = gets.chomp.downcase
-        if compboard[@player_shots] == "O"
+      @player_shots = gets.chomp.to_s.downcase
+        if compboard.board[@player_shots] == "O"
           p "You missed"
-          compboard[@player_shots] = "M"
+          compboard.board[@player_shots] = "M"
           break
-        elsif compboard[@player_shots] == "S"
+        elsif compboard.board[@player_shots] == "S" && ship_check
           p "You hit an enemy ship!"
-          compboard[@player_shots] = "H"
+          compboard.board[@player_shots] = "H"
           break
-        elsif compboard[@player_shots] == "H" || compboard[@player_shots] == "M"
+        elsif compboard.board[@player_shots] == "H" || compboard.board[@player_shots] == "M"
           p "You've already placed a shot there, enter a new coordinate."
         end
     end
   end
 
 
-  def computer_guess
-    
+  def computer_shot(playerboard)
+
     #playerboard.key gives array just shuffle and pop
     loop do
-      coords = playerboard.keys.shuffle.pop
-      compshot = round.player_board.values_at(coords)
-      switch = round.player_board[coords]
+      coords = playerboard.board.keys.shuffle.pop
+      compshot = playerboard.board.values_at(coords)
+      switch = playerboard.board[coords]
 
       if compshot == "O"
         switch = "M"
@@ -45,10 +45,9 @@ attr_reader :shots
         break
       elsif compshot == "H" || compshot == "M"
       end
+    end
   end
-#Should this be in the board? info is on the board.
-#Does it need to go through guess?
-  def What_lives(hash, ship_list)
+  def what_lives(ship_list)
     ship_list.map do |ship|
       if ship.currentlife == 0
         ship_yard.delete(ship)
@@ -66,4 +65,16 @@ attr_reader :shots
     @shots << [@player_shots, @computer_shots]
 
   end
+
+  def ship_alive
+
+  end
+  def ship_check
+    compboard.active_ships_comp.ship_yard.each do |ship|
+      ship.size.each do |space|
+        space == @player_shots
+      end
+    end
+  end
+
 end
