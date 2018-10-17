@@ -1,13 +1,13 @@
 class Guesses
-attr_reader :shots
-  def initialize(turn)
+attr_reader :shots, :player_shots, :computer_shots
+  def initialize
 
     @shots = []
     @player_shots = player_shots
     @computer_shots = computer_shots
   end
 
-  def player_guess
+  def player_shot(compboard)
 #This info goes into ships, this is their desicion to make only check for double shots.
     loop do
       p "Please input a guess such as 'a1' or 'c3'."
@@ -27,8 +27,8 @@ attr_reader :shots
   end
 
 
-  def computer_guess
-    
+  def computer_shot(playerboard)
+
     #playerboard.key gives array just shuffle and pop
     loop do
       coords = playerboard.keys.shuffle.pop
@@ -45,10 +45,11 @@ attr_reader :shots
         break
       elsif compshot == "H" || compshot == "M"
       end
+    end
   end
 #Should this be in the board? info is on the board.
 #Does it need to go through guess?
-  def What_lives(hash, ship_list)
+  def what_lives(ship_list)
     ship_list.map do |ship|
       if ship.currentlife == 0
         ship_yard.delete(ship)

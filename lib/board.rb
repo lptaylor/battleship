@@ -32,11 +32,11 @@ class Board
   def print_board
     p "Here is the board you are playing on with all the coordiantes you can chooose."
     i = 01
-    ('a'..num_to_alpha[@size]).each {|n| print "    #{n}"}
+    (1..@size).each {|n| print "    #{n}"}
     print "\n"
     letter_ref = ('a'..num_to_alpha[@size])
     letter_ref.each do |letter|
-      print "#{i}.."
+      print "#{num_to_alpha[i]}.."
       @board.keys.each do |slip|
         if slip.include?(letter)
           print @board.values_at(slip)
