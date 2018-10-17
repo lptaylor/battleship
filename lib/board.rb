@@ -1,12 +1,13 @@
 require './lib/ships_factory'
 class Board
 
-  attr_reader :size, :board, :updater_hash
+  attr_reader :size, :board, :updater_hash, :active_ships
 
   def initialize(size)
     @size = size
     @board = Hash.new
     @updater_hash = Hash.new
+    @computer_ships = Array.new
     #@row = []
     #@col = []
   end
@@ -85,6 +86,7 @@ class Board
     p "Here is your board to place your ships"
     print_board
     @active_ships.place_ships_player
+    # @computer_ships.map do |&:clone
     update_board_hash
     # p print_board
       # if ship_placement_check(@active_ships)
@@ -99,5 +101,17 @@ class Board
     end
     @board.merge!(@updater_hash)
     print_board
+  end
+  def ship_status(guess)
+    @active_ships.each do |slot|
+      slot.each do |ship|
+      ship.hit?(guess)
+    end
+  end
+
+
+    # coordinate_array = @ship_yard.map do |ship|
+    #   ship.size.map do |coordinates|
+    #     coordinates = gets.chomp.to_s
   end
 end
