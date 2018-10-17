@@ -8,7 +8,7 @@ attr_reader :shots
   end
 
   def player_guess
-
+#This info goes into ships, this is their desicion to make only check for double shots.
     loop do
       p "Please input a guess such as 'a1' or 'c3'."
       @player_shots = gets.chomp.downcase
@@ -28,53 +28,38 @@ attr_reader :shots
 
 
   def computer_guess
+    
+    #playerboard.key gives array just shuffle and pop
     loop do
-      coord2 = rand(1..playerboard.size)
-      coord1 = playerboard.num_to_alpha[rand(1..playerboard.size)]
-      compshot = playerboard["#{coord1}#{coord2}"]
+      coords = playerboard.keys.shuffle.pop
+      compshot = round.player_board.values_at(coords)
+      switch = round.player_board[coords]
 
       if compshot == "O"
-        compshot = "M"
+        switch = "M"
         p "Your opponent has missed"
         break
       elsif compshot == "S"
-        compshot = "H"
-        p "You've been hit! Check #{coord1}#{coord2} for damage!"
+        switch = "H"
+        p "You've been hit! Check #{coords} for damage!"
         break
       elsif compshot == "H" || compshot == "M"
       end
-
+  end
+#Should this be in the board? info is on the board.
+#Does it need to go through guess?
+  def What_lives(hash, ship_list)
+    ship_list.map do |ship|
+      if ship.currentlife == 0
+        ship_yard.delete(ship)
+        p "They destroyed your #{ship}!"
+        p "You have #{ship_yard.count} remaining!"
+      else
+        p "You currently have #{ship_yard.count} ship(s) remaining!"
+      end
     end
-
-
-
+    ship_list
   end
-
-  def guess_hit?()
-
-
-  end
-
-  loop do
-    p player_shot_board
-    p player_ship_board
-    player_guess
-    player.guess_hit?
-    player.feedback
-    break if computer_ship_board != s
-
-    p computer_shot_board
-    p computer_ship_board
-    computer_guess
-    computer.guess_hit?
-    computer.feedback
-    break if player_ship_board != s
-
-    p "No winner next turn"
-
-    record_shots
-  end
-
 
   def record_shots
 

@@ -4,8 +4,11 @@ class ShipFactory
   attr_reader :ship_yard
 
   def initialize
-    @ship_yard = []
-    @comp_ship_yard = []
+
+    #contains the ship objects to be iterated over for lifesigns
+
+   @ship_yard = []
+   @comp_ship_yard = []
   end
 
   def pick_your_ships(board_size)

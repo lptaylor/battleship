@@ -1,6 +1,11 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/guesses'
+require './lib/board'
+require './lib/ship'
+
 
 class GuessesTest < Minitest::Test
 
@@ -15,5 +20,20 @@ class GuessesTest < Minitest::Test
 
     assert_equal [], guesses
   end
+
+  def test_guesses_can_store_shots
+
+
+  end
+
+  def test_player_can_enter_shot
+
+  end
+
+  def test_comp_can_enter_shot
+
+  end
+
+
 
 end
