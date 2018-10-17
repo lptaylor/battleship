@@ -93,6 +93,7 @@ class Board
       # end
   end
 
+
   def update_board_hash
     @active_ships.ship_yard.map do |hash_array|
       hash_array.map do |hash_space|

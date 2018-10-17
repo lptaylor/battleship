@@ -15,7 +15,6 @@ attr_reader :size
         if i == @currentlife
            @currentlife = 0
         end
-        p "steve"
     end
 end
 
