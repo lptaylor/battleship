@@ -7,18 +7,36 @@ class ShipFactory
 
     #contains the ship objects to be iterated over for lifesigns
 
-    @ship_yard = []
-
+   @ship_yard = []
+   @comp_ship_yard = []
   end
 
-  def pick_your_ships
-    puts "Please pick your ships. Only one of each allowed!"
-    puts "1: Carrier"
-    puts "2: Battleship"
-    puts "3: Submarine"
-    puts "4: Cruiser"
-    puts "5: Destroyer"
+  def pick_your_ships(board_size)
+    if board_size >= 3
+      puts "Please pick your ships."
+      puts "1: Carrier"
+      puts "2: Battleship"
+      puts "3: Submarine"
+      ship_list
+    elsif board_size >= 4
+      puts "Please pick your ships."
+      puts "1: Battleship"
+      puts "2: Submarine"
+      puts "3: Cruiser"
+      puts "4: Destroyer"
+      ship_list
+    else
+      puts "Please pick your ships."
+      puts "1: Submarine"
+      puts "2: Cruiser"
+      puts "3: Destroyer"
+      puts "4: Cruiser"
+      puts "5: Destroyer"
+      ship_list
+    end
+  end
 
+  def ship_list
     choice = gets.chomp.to_i
     if choice == 1
       carrier = Ships.new(5)
@@ -57,6 +75,20 @@ class ShipFactory
   def place_ships_player
     p "Please place your ships."
     place_on_board
+  end
+
+  def place_on_board_comp
+    comp_coordinate_array = @ship_yard.map do |ship|
+      ship.size.map do |coordinates|
+        coordinates = inital_space += 1
+      end
+    end
+    @comp_ship_yard << comp_coordinate_array
+  end
+
+  def place_ships_comp(inital_space)
+    place_on_board_comp
+
   end
 end
 # binding.pry
