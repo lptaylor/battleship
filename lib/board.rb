@@ -8,6 +8,8 @@ class Board
     @size = size
     @board = Hash.new
     @updater_hash = Hash.new
+    @active_ships = []
+    @active_ships_comp = @active_ships
     #@row = []
     #@col = []
   end
@@ -31,7 +33,7 @@ class Board
   end
 
   def print_board
-    p "Here is the board you are playing on with all the coordiantes you can chooose."
+    p "Here is the board you are playing on with all the coordinates you can chooose."
     i = 01
     ('a'..num_to_alpha[@size]).each {|n| print "    #{n}"}
     print "\n"
@@ -48,32 +50,6 @@ class Board
     end
     return "Battlefield"
   end
-
-  # def checkplace
-  #   user_ship_array.each do |ships|
-  #     ships.each do |coordinate|
-  #     split_coodinates = coordiante.split
-  #     @row << split_coodinates[0]
-  #     @col << split_coodinates[1]
-  #       if row.all?(user_placement.split[0]) || col.all?(user_placement.split[1])
-  #       end
-  #     end
-  #   end
-  # end
-
-  #Master check method
-  # def ship_placement_check(ships_array)
-  #     ships_array.each do |ships|
-  #       ships.each do |coordinates|
-  #         if @board.key.include?(coordinates) && checkplace #&& ships_length_check
-  #           p "Ship is now on the high seas!"
-  #         else
-  #           p "Invalid ship placement ya scallywag!"
-  #         end
-  #       end
-  #     end
-  # end
-
   def ship_placement
     p "How many ships would you like to play with?"
     ship_count = gets.chomp.to_i
@@ -100,6 +76,46 @@ class Board
     end
     @board.merge!(@updater_hash)
     print_board
+  end
+
+  def comp_ship_placement
+   inital_space = @board.keys.pop
+   @active_ships_comp.place_ships_comp(inital_space)
+   update_board_hash
+
+  end
+
+  def ship_placement_check
+    @active_ships.each do |ships|
+      ships.each do |coordinates|
+        if @board[coordinates] == "S"
+          p "You can't stack your ships sailor."
+        elsif @board.keys.include?(coordinates) && checkplace(coordinates) && ships_length_check
+          p "Ship is now on the high seas!"
+        else
+          p "Invalid ship placement ya scallywag!"
+        end
+      end
+    end
+  end
+
+  def checkplace(coordinates)
+    coordinates.each do |ships|
+      ships.each do |coordinate|
+        split_coodinates = coordinate.split
+        @row << split_coodinates[0]
+        @col << split_coodinates[1]
+        if row.all?(user_placement.split[0]) || col.all?(user_placement.split[1])
+        end
+      end
+    end
+  end
+
+
+
+  def ships_length_check(coordinates)
+
+
   end
 end
 # binding.pry
