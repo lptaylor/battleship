@@ -1,9 +1,6 @@
 require './lib/board'
 require './lib/guesses'
 
-
-
-
 class Round
 attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
   def initialize
@@ -28,8 +25,9 @@ attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
 
   def start_round
     @player_ship_board.ship_placement
-    game_sequence
-    #comp ship placement
+
+    @computer_ship_board.comp_ship_placement
+
   end
   def game_sequence
     loop do
