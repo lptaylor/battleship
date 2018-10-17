@@ -9,9 +9,9 @@ class Board
     @board = Hash.new
     @updater_hash = Hash.new
     @active_ships = []
-    @active_ships_comp = @active_ships
-    #@row = []
-    #@col = []
+    @player_coordinates_array = []
+    @row = []
+    @col = []
   end
 
   def generate_a_board
@@ -78,19 +78,14 @@ class Board
     print_board
   end
 
-  def comp_ship_placement
-   inital_space = @board.keys.pop
-   @active_ships_comp.place_ships_comp(inital_space)
-   update_board_hash
-
-  end
 
   def ship_placement_check
-    @active_ships.each do |ships|
+    @active_ships.ship_yard.each do |ships|
       ships.each do |coordinates|
+        @player_coordinates_array << coordinates
         if @board[coordinates] == "S"
           p "You can't stack your ships sailor."
-        elsif @board.keys.include?(coordinates) && checkplace(coordinates) && ships_length_check
+        elsif @board.keys.include?(coordinates) && checkplace(@player_coordinates_array) && ships_length_check
           p "Ship is now on the high seas!"
         else
           p "Invalid ship placement ya scallywag!"
@@ -99,17 +94,16 @@ class Board
     end
   end
 
-  def checkplace(coordinates)
-    coordinates.each do |ships|
-      ships.each do |coordinate|
-        split_coodinates = coordinate.split
+  def checkplace(player_coordinates_array)
+    @player_coordinates_array.each do |coordinates|
+        split_coodinates = coordinates.split
         @row << split_coodinates[0]
         @col << split_coodinates[1]
-        if row.all?(user_placement.split[0]) || col.all?(user_placement.split[1])
-        end
-      end
+          if row.all?(@player_coordinates_array[0].split[0]) || col.all?(@player_coordinates_array[1].split[1])
+          end
     end
   end
+
 
 
 
@@ -118,4 +112,3 @@ class Board
 
   end
 end
-# binding.pry
