@@ -1,5 +1,4 @@
 require './lib/round'
-require 'pry'
 class Start
   attr_reader :userinput
     def initialize

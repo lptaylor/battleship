@@ -12,7 +12,8 @@ class Board
     @player_coordinates_array = []
     @row = []
     @col = []
-
+    @comp_active_ships = []
+    @comp_updater_hash = Hash.new
   end
 
   def generate_a_board
@@ -67,6 +68,15 @@ class Board
      # if ship_placement_check
      # end
   end
+  def comp_ship_placement
+    @comp_active_ships = ShipFactory.new
+    ship_count = 2
+    ship_count.times do |selection|
+      selection = @comp_active_ships.comp_ship_list
+    end
+    comp_update_board_hash
+
+  end
 
 
   def update_board_hash
@@ -79,43 +89,41 @@ class Board
     print_board
   end
 
-  # def ship_placement_check
-  #   valid = false
-  #   # until valid == true
-  #     @active_ships.ship_yard.each do |ships|
-  #       ships.each do |coordinates|
-  #         @player_coordinates_array << coordinates
-  #         if @board[ships] == "S"
-  #           p "You can't stack your ships sailor."
-  #           # break
-  #         elsif @board.keys.include?(coordinates) && checkplace(@player_coordinates_array) && ships_length_check
-  #           valid = true
-  #           p "Ship is now on the high seas!"
-  #         else
-  #           p "Invalid ship placement ya scallywag!"
-  #         end
-  #       end
-  #     end
-    # end
-  # end
-  # def checkplace(player_coordinates_array)
-    # check_row = @player_coordinates_array[0].split[0]
-    # check_col = @player_coordinates_array[0].split[1]
-    # @player_coordinates_array.each do |coordinates|
-    #     split_coodinates = coordinates.split(//)
-    #     @row << split_coodinates[0]
-    #     @col << split_coodinates[1]
-    #       if @row.all? do |x|
-    #         x == check_row
-    #         end
-    #       elsif @col.all? do |y|
-    #         y == check_col
-    #       end
-    #       else
-    #         p "invalid input"
-    #       end
-    # end
-  # end
+
+  def comp_update_board_hash
+    @comp_active_ships.ship_yard.map do |hash_array|
+      hash_array.map do |hash_space|
+        @comp_updater_hash[hash_space] = "S"
+      end
+    end
+    @board.merge!(@comp_updater_hash)
+    print_board
+  end
+
+  def ship_placement_check
+    @active_ships.ship_yard.each do |ships|
+      ships.each do |coordinates|
+        @player_coordinates_array << coordinates
+        if @board[coordinates] == "S"
+          p "You can't stack your ships sailor."
+        elsif @board.keys.include?(coordinates) && checkplace(@player_coordinates_array) && ships_length_check
+          p "Ship is now on the high seas!"
+        else
+          p "Invalid ship placement ya scallywag!"
+        end
+      end
+    end
+  end
+
+  def checkplace(player_coordinates_array)
+    @player_coordinates_array.each do |coordinates|
+        split_coodinates = coordinates.split
+        @row << split_coodinates[0]
+        @col << split_coodinates[1]
+          if row.all?(@player_coordinates_array[0].split[0]) || col.all?(@player_coordinates_array[1].split[1])
+          end
+    end
+  end
 
   def ships_length_check
 
