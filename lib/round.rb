@@ -7,6 +7,7 @@ attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
     board_size = get_board_size
     generate_boards(board_size)
     start_round
+    game_sequence
   end
 
   def get_board_size
@@ -26,18 +27,19 @@ attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
   def start_round
     @player_ship_board.ship_placement
 
-    @computer_ship_board.comp_ship_placement
+    #@computer_ship_board.comp_ship_placement
 
   end
   def game_sequence
-    loop do
-    @game_sequence = Guesses.new
-    player_guess
-    # computer_guess
-
-
-
-    end
+    game_sequence = Guesses.new
+    # while (game_sequence.what_lives(@player_ship_board)) == true #|| (game_sequence.what_lives(@player_ship_board)) == true
+      game_sequence.player_shot(@player_ship_board)
+      game_sequence.what_lives(@player_ship_board)
+      @player_ship_board.print_board
+      game_sequence.computer_shot(@player_ship_board)
+      game_sequence.what_lives(@player_ship_board)
+      @player_guess_board.print_board
+    # end
   end
 
 

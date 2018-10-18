@@ -1,13 +1,14 @@
 require './lib/ships_factory'
 class Board
 
-  attr_reader :size, :board, :updater_hash, :active_ships
+  attr_reader :size, :board, :updater_hash, :active_ships, :active_ships_comp
 
   def initialize(size)
     @size = size
     @board = Hash.new
     @updater_hash = Hash.new
     @active_ships = []
+    @active_ships_comp = []
     @player_coordinates_array = []
     @row = []
     @col = []
@@ -57,16 +58,14 @@ class Board
     #loop until true for all
     @active_ships = ShipFactory.new
     ship_count.times do |selection|
-      selection = @active_ships.pick_your_ships
+      selection = @active_ships.pick_your_ships(@size)
     end
     p "Here is your board to place your ships"
     print_board
     @active_ships.place_ships_player
-    # @computer_ships.map do |&:clone
     update_board_hash
-    # p print_board
-      # if ship_placement_check(@active_ships)
-      # end
+     # if ship_placement_check
+     # end
   end
 
 
@@ -80,32 +79,45 @@ class Board
     print_board
   end
 
-  def ship_placement_check
-    @active_ships.ship_yard.each do |ships|
-      ships.each do |coordinates|
-        @player_coordinates_array << coordinates
-        if @board[coordinates] == "S"
-          p "You can't stack your ships sailor."
-        elsif @board.keys.include?(coordinates) && checkplace(@player_coordinates_array) && ships_length_check
-          p "Ship is now on the high seas!"
-        else
-          p "Invalid ship placement ya scallywag!"
-        end
-      end
-    end
-  end
+  # def ship_placement_check
+  #   valid = false
+  #   # until valid == true
+  #     @active_ships.ship_yard.each do |ships|
+  #       ships.each do |coordinates|
+  #         @player_coordinates_array << coordinates
+  #         if @board[ships] == "S"
+  #           p "You can't stack your ships sailor."
+  #           # break
+  #         elsif @board.keys.include?(coordinates) && checkplace(@player_coordinates_array) && ships_length_check
+  #           valid = true
+  #           p "Ship is now on the high seas!"
+  #         else
+  #           p "Invalid ship placement ya scallywag!"
+  #         end
+  #       end
+  #     end
+    # end
+  # end
+  # def checkplace(player_coordinates_array)
+    # check_row = @player_coordinates_array[0].split[0]
+    # check_col = @player_coordinates_array[0].split[1]
+    # @player_coordinates_array.each do |coordinates|
+    #     split_coodinates = coordinates.split(//)
+    #     @row << split_coodinates[0]
+    #     @col << split_coodinates[1]
+    #       if @row.all? do |x|
+    #         x == check_row
+    #         end
+    #       elsif @col.all? do |y|
+    #         y == check_col
+    #       end
+    #       else
+    #         p "invalid input"
+    #       end
+    # end
+  # end
 
-  def checkplace(player_coordinates_array)
-    @player_coordinates_array.each do |coordinates|
-        split_coodinates = coordinates.split
-        @row << split_coodinates[0]
-        @col << split_coodinates[1]
-          if row.all?(@player_coordinates_array[0].split[0]) || col.all?(@player_coordinates_array[1].split[1])
-          end
-    end
-  end
-
-  def ships_length_check(coordinates)
+  def ships_length_check
 
   end
 end

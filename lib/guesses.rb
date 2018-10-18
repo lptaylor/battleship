@@ -22,42 +22,48 @@ attr_reader :shots, :player_shots, :computer_shots
           break
         elsif compboard.board[@player_shots] == "H" || compboard.board[@player_shots] == "M"
           p "You've already placed a shot there, enter a new coordinate."
+        else
         end
     end
   end
 
 
   def computer_shot(playerboard)
-
-    #playerboard.key gives array just shuffle and pop
-    loop do
-      coords = playerboard.board.keys.shuffle.pop
-      compshot = playerboard.board.values_at(coords)
-      switch = playerboard.board[coords]
-
+    coords = playerboard.board.keys.shuffle.pop
+    compshot = playerboard.board[coords]
+    # loop do
       if compshot == "O"
-        switch = "M"
+        compshot = "M"
         p "Your opponent has missed"
-        break
+        # break
       elsif compshot == "S"
-        switch = "H"
+        compshot = "H"
         p "You've been hit! Check #{coords} for damage!"
-        break
-      elsif compshot == "H" || compshot == "M"
-      end
-    end
-  end
-  def what_lives(ship_list)
-    ship_list.map do |ship|
-      if ship.currentlife == 0
-        ship_yard.delete(ship)
-        p "They destroyed your #{ship}!"
-        p "You have #{ship_yard.count} remaining!"
+      elsif playerboard.board[@player_shots] == "H" || playerboard.board[@player_shots] == "M"
+        p "Computer tried to shoot the same spot."
+        computer_shot(playerboard)
       else
-        p "You currently have #{ship_yard.count} ship(s) remaining!"
+        computer_shot(playerboard)
       end
+    # end
+  end
+
+  def what_lives(gameboard)#(ship_list)
+    if gameboard.board.values.include?("S")
+      p "Game continues."
+    else
+      p "GAME OVER."
     end
-    ship_list
+  #   ship_list.map do |ship|
+  #      if ship.sunk == true
+  #           ship_yard.delete(ship)
+  #         p "They destroyed your #{ship}!"
+  #         p "You have #{ship_yard.count} remaining!"
+  #     else
+  #       p "You currently have #{ship_yard.count} ship(s) remaining!"
+  #     end
+  #   end
+  #   ship_list
   end
 
   def record_shots
