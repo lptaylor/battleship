@@ -11,7 +11,8 @@ class Board
     @player_coordinates_array = []
     @row = []
     @col = []
-
+    @comp_active_ships = []
+    @comp_updater_hash = Hash.new
   end
 
   def generate_a_board
@@ -57,16 +58,24 @@ class Board
     #loop until true for all
     @active_ships = ShipFactory.new
     ship_count.times do |selection|
-      selection = @active_ships.pick_your_ships
+      selection = @active_ships.pick_your_ships(@size)
     end
     p "Here is your board to place your ships"
     print_board
     @active_ships.place_ships_player
-    # @computer_ships.map do |&:clone
     update_board_hash
     # p print_board
       # if ship_placement_check(@active_ships)
       # end
+  end
+  def comp_ship_placement
+    @comp_active_ships = ShipFactory.new
+    ship_count = 2
+    ship_count.times do |selection|
+      selection = @comp_active_ships.comp_ship_list
+    end
+    comp_update_board_hash
+
   end
 
 
@@ -77,6 +86,16 @@ class Board
       end
     end
     @board.merge!(@updater_hash)
+    print_board
+  end
+
+  def comp_update_board_hash
+    @comp_active_ships.ship_yard.map do |hash_array|
+      hash_array.map do |hash_space|
+        @comp_updater_hash[hash_space] = "S"
+      end
+    end
+    @board.merge!(@comp_updater_hash)
     print_board
   end
 

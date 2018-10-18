@@ -7,7 +7,7 @@ attr_reader :shots, :player_shots, :computer_shots
     @computer_shots = computer_shots
   end
 
-  def player_shot(compboard)
+  def player_shot(compboard, guessboard)
 #This info goes into ships, this is their desicion to make only check for double shots.
     loop do
       p "Please input a guess such as 'a1' or 'c3'."
@@ -15,10 +15,12 @@ attr_reader :shots, :player_shots, :computer_shots
         if compboard.board[@player_shots] == "O"
           p "You missed"
           compboard.board[@player_shots] = "M"
+          guessboard.board[@player_shots] = "M"
           break
-        elsif compboard.board[@player_shots] == "S" && ship_check
+        elsif compboard.board[@player_shots] == "S" #&& ship_check
           p "You hit an enemy ship!"
           compboard.board[@player_shots] = "H"
+          guessboard.board[@player_shots] = "H"
           break
         elsif compboard.board[@player_shots] == "H" || compboard.board[@player_shots] == "M"
           p "You've already placed a shot there, enter a new coordinate."

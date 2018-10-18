@@ -30,19 +30,19 @@ attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
 
   end
   def game_sequence
-    loop do
+    # loop do
     @game_sequence = Guesses.new
     player_guess
     # computer_guess
 
 
 
-    end
+    # end
   end
 
 
   def player_guess
-    @game_sequence.player_shot(@computer_ship_board)
+    @game_sequence.player_shot(@computer_ship_board, @player_guess_board)
     @game_sequence.player_shots
     #@computer_ship_board.ship_status
 

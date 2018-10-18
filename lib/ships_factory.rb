@@ -1,7 +1,7 @@
 require './lib/ships'
-# require 'pry'
+
 class ShipFactory
-  attr_reader :ship_yard
+  attr_reader :ship_yard, :comp_ship_yard
 
   def initialize
 
@@ -63,6 +63,29 @@ class ShipFactory
     end
   end
 
+    def comp_ship_list
+      choice = rand(2..5)
+      if choice == 1
+        carrier = Ships.new(5)
+        @ship_yard << carrier
+      elsif choice == 2
+        battleship = Ships.new(4)
+        @ship_yard << battleship
+      elsif choice == 3
+        submarine = Ships.new(3)
+        @ship_yard << submarine
+      elsif choice == 4
+        cruiser = Ships.new(3)
+        @ship_yard << cruiser
+      elsif choice == 5
+        destroyer = Ships.new(2)
+        @ship_yard << destroyer
+      else
+      end
+    end
+
+
+
   def place_on_board
     coordinate_array = @ship_yard.map do |ship|
       ship.size.map do |coordinates|
@@ -71,21 +94,18 @@ class ShipFactory
     end
     @ship_yard.replace(coordinate_array)
   end
-  # def comp_place_on_board(compboard)
-  #   coordinate_array = @ship_yard.map do |ship|
-  #     key = compboard.keys.shuffle.pop
-  #     ship.size.map do |coordinates|
-  #       arr = key.split(//)
-  #       num = arr[1].to_i
-  #     end
-  #
-  #
-  #
-  #
-  #       coordinates =
-  #     end
-  #   end
-  # end
+  def comp_place_on_board(compboard)
+    coordinate_array = @ship_yard.map do |ship|
+      key = compboard.keys.shuffle.pop
+      ship.size.map do |coordinates|
+        arr = key.split(//)
+        num = arr[1].to_i
+        num += 1
+        coordinates = arr.replace([arr[0], num]).join
+      end
+      end
+      @comp_ship_yard.replace(coordinate_array)
+  end
 
 
   def place_ships_player
@@ -94,18 +114,8 @@ class ShipFactory
 
   end
 
-  def place_on_board_comp
-    comp_coordinate_array = @ship_yard.map do |ship|
-      ship.size.map do |coordinates|
-        coordinates = inital_space += 1
-      end
-    end
-    @comp_ship_yard << comp_coordinate_array
-  end
-
   def place_ships_comp(inital_space)
     place_on_board_comp
 
   end
 end
-# binding.pry
