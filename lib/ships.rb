@@ -1,21 +1,27 @@
 class Ships
-attr_reader :size
+attr_reader :size, :currentlife, :i
   def initialize(size)
     @size = Array.new(size, "open")
     @currentlife = @size.count
+    @i = 0
   end
 
     def hit?(board) #iterate over hash
-      i = 0
       @size.each do |check|
         if board[check].include?("H") == true
-          i += 1
+          @i += 1
         end
       end
-        if i == @currentlife
-           @currentlife = 0
-        end
     end
+
+    def sunk
+      if @i == @currentlife
+        p "They sunk your ship"
+      else
+        p "Ship is alive"
+      end
+    end
+
 end
 
 

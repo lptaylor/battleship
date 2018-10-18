@@ -12,24 +12,24 @@ class ShipFactory
   end
 
   def pick_your_ships(board_size)
-    if board_size >= 3
+    if board_size <= 3
+      puts "Please pick your ships."
+      puts "3: Submarine"
+      puts "4: Cruiser"
+      puts "5: Destroyer"
+      ship_list
+    elsif board_size <= 4
+      puts "Please pick your ships."
+      puts "2: Battleship"
+      puts "3: Submarine"
+      puts "4: Cruiser"
+      puts "5: Destroyer"
+      ship_list
+    else
       puts "Please pick your ships."
       puts "1: Carrier"
       puts "2: Battleship"
       puts "3: Submarine"
-      ship_list
-    elsif board_size >= 4
-      puts "Please pick your ships."
-      puts "1: Battleship"
-      puts "2: Submarine"
-      puts "3: Cruiser"
-      puts "4: Destroyer"
-      ship_list
-    else
-      puts "Please pick your ships."
-      puts "1: Submarine"
-      puts "2: Cruiser"
-      puts "3: Destroyer"
       puts "4: Cruiser"
       puts "5: Destroyer"
       ship_list

@@ -22,7 +22,9 @@ class ShipsTest < Minitest::Test
 
   end
 
-  def test_it_knows_when_missed
+  def test_it_knows_when_sunk
+    ship_1 = Ships.new(2)
+    ship_1.currentlife
 
   end
 

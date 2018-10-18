@@ -1,13 +1,14 @@
 require './lib/ships_factory'
 class Board
 
-  attr_reader :size, :board, :updater_hash, :active_ships
+  attr_reader :size, :board, :updater_hash, :active_ships, :active_ships_comp
 
   def initialize(size)
     @size = size
     @board = Hash.new
     @updater_hash = Hash.new
     @active_ships = []
+    @active_ships_comp = []
     @player_coordinates_array = []
     @row = []
     @col = []
@@ -64,9 +65,8 @@ class Board
     print_board
     @active_ships.place_ships_player
     update_board_hash
-    # p print_board
-      # if ship_placement_check(@active_ships)
-      # end
+     # if ship_placement_check
+     # end
   end
   def comp_ship_placement
     @comp_active_ships = ShipFactory.new
@@ -88,6 +88,7 @@ class Board
     @board.merge!(@updater_hash)
     print_board
   end
+
 
   def comp_update_board_hash
     @comp_active_ships.ship_yard.map do |hash_array|
@@ -124,7 +125,7 @@ class Board
     end
   end
 
-  def ships_length_check(coordinates)
+  def ships_length_check
 
   end
 end
