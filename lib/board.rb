@@ -1,13 +1,14 @@
 require './lib/ships_factory'
 class Board
 
-  attr_reader :size, :board, :updater_hash, :active_ships
+  attr_reader :size, :board, :updater_hash, :active_ships, :active_ships_comp
 
   def initialize(size)
     @size = size
     @board = Hash.new
     @updater_hash = Hash.new
     @active_ships = []
+    @active_ships_comp = []
     @player_coordinates_array = []
     @row = []
     @col = []

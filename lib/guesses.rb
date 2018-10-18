@@ -29,7 +29,6 @@ attr_reader :shots, :player_shots, :computer_shots
 
 
   def computer_shot(playerboard)
-    # coords = []
     coords = playerboard.board.keys.shuffle.pop
     compshot = playerboard.board[coords]
     # loop do

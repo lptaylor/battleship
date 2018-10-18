@@ -31,16 +31,15 @@ attr_reader :player_ship_board, :player_guess_board, :computer_ship_board
 
   end
   def game_sequence
-    loop do
     game_sequence = Guesses.new
-    game_sequence.player_shot(@computer_ship_board)
-    game_sequence.what_lives(@player_ship_board)
-    game_sequence.computer_shot(@player_ship_board)
-    game_sequence.what_lives(@player_ship_board)
-
-
-
-    end
+    # while (game_sequence.what_lives(@player_ship_board)) == true #|| (game_sequence.what_lives(@player_ship_board)) == true
+      game_sequence.player_shot(@player_ship_board)
+      game_sequence.what_lives(@player_ship_board)
+      @player_ship_board.print_board
+      game_sequence.computer_shot(@player_ship_board)
+      game_sequence.what_lives(@player_ship_board)
+      @player_guess_board.print_board
+    # end
   end
 
 
