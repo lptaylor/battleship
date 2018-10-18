@@ -22,14 +22,13 @@ attr_reader :shots, :player_shots, :computer_shots
           break
         elsif compboard.board[@player_shots] == "H" || compboard.board[@player_shots] == "M"
           p "You've already placed a shot there, enter a new coordinate."
+        else
         end
     end
   end
 
 
   def computer_shot(playerboard)
-
-    #playerboard.key gives array just shuffle and pop
     loop do
       coords = playerboard.board.keys.shuffle.pop
       compshot = playerboard.board.values_at(coords)
@@ -43,16 +42,18 @@ attr_reader :shots, :player_shots, :computer_shots
         switch = "H"
         p "You've been hit! Check #{coords} for damage!"
         break
-      elsif compshot == "H" || compshot == "M"
+      elsif compboard.board[@player_shots] == "H" || compboard.board[@player_shots] == "M"
+      else
       end
     end
   end
+
   def what_lives(ship_list)
     ship_list.map do |ship|
-      if ship.currentlife == 0
-        ship_yard.delete(ship)
-        p "They destroyed your #{ship}!"
-        p "You have #{ship_yard.count} remaining!"
+       if ship.sunk == true
+            ship_yard.delete(ship)
+          p "They destroyed your #{ship}!"
+          p "You have #{ship_yard.count} remaining!"
       else
         p "You currently have #{ship_yard.count} ship(s) remaining!"
       end
